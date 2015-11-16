@@ -3,13 +3,12 @@
 <html lang="en-GB">
 
 <head>
+	<meta charset="utf-8" />
 	<title>Form file for upload plug-ing</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="multibrowse.js"></script>
 </head>
 
 <body>
-	<form id="sandbox-form" action="insertscript.php" method="post">
+	<form id="sandbox-form" class="multibrowse" action="insertscript.php" method="post">
 
 		<p><Label for="text-example">insert text : </label>
 		<input  type="text" name="insert name" id="text-example" value="type text" /></p>
@@ -21,6 +20,10 @@
 
 		<button type="submit" value="submit">Submit</button>
 	</form>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="multibrowse.js"></script>
+
 </body>
 
 </html>
