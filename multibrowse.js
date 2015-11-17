@@ -1,9 +1,15 @@
 (function( $ ) {
 
+	// Enter your options here (see doc)
+	var userOptions = {
+		// maxNumberOfInputs:
+	};
+
 	$multibrowse = $(".multibrowse");
 
 	$.fn.addFileInput = function( options ){
 
+		// Default options
 		var settings = $.extend({
 			maxNumberOfInputs: 3
 		}, options );
@@ -31,6 +37,6 @@
 
 	}
 
-	$multibrowse.addFileInput();
+	$multibrowse.addFileInput( userOptions );
 
 }(jQuery));
