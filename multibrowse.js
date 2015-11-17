@@ -9,7 +9,7 @@
 
 	var $multibrowse = $(".multibrowse");
 	
-	// Helper method that adds anothe file input after the last one 
+	// Helper method that adds another file input after the last one 
 	$.fn.createFileInput = function( attributes ) {
 		var $newFile = $("<input>");
 		// Copies the attributes adds a suffix to "id" and "name"
@@ -24,7 +24,7 @@
 	}
 
 
-
+	// Helper method that adds a message below the form header
 	$.fn.writeMessage = function( message ) {
 		var $message = $( "<p class=\"multiBrowseMessage\"></p>" );
 		$message.html( message );
@@ -62,7 +62,6 @@
 			// Checks the file size, then the max file size
 			if ((  this.files[0].size > settings.maxFileSize) 
 			|| totalSize > settings.maxTotalSize ){
-				$message  = "Your files are too large";
 				$multibrowse.writeMessage( "Too Big you Idiot !!!" );
 			} 
 
