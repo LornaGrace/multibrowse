@@ -3,6 +3,8 @@
 	// Enter your options here (see doc)
 	var userOptions = {
 		// maxNumberOfInputs:
+		// maxFileSize:
+		// maxTotalSize:
 	};
 
 	$multibrowse = $(".multibrowse");
@@ -11,7 +13,9 @@
 
 		// Default options
 		var settings = $.extend({
-			maxNumberOfInputs: 3
+			maxNumberOfInputs: 3,
+			maxFileSize: 1000000,
+			maxTotalSize: 3000000
 		}, options );
 
 		// Puts an event handler on every input of type file inside an element of class "multibrowse"
@@ -37,6 +41,6 @@
 
 	}
 
-	$multibrowse.addFileInput( userOptions );
+	// $multibrowse.addFileInput( userOptions );
 
 }(jQuery));
