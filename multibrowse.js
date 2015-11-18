@@ -11,6 +11,7 @@
 	var $multisubmit = $(".multisubmit");
 	$multisubmit[0].disabled = false;
 	
+
 	// Helper method that adds another file input after the last one 
 	$.fn.createFileInput = function( attributes ) {
 		var $newFile = $("<input>");
@@ -25,12 +26,30 @@
 		$(".multibrowse input:file:last").after( $newFile ).after( "<br>" );
 	}
 
+
 	// Helper method that adds a message below the form header
 	$.fn.writeMessage = function( message ) {
 		var $message = $( "<p class=\"multiBrowseMessage\"></p>" );
 		$message.html( message );
 		$multibrowse.prepend( $message );
 	}
+
+
+	// Helper method that calculates the total size of all files
+	$.fn.totalSize = function() {
+		var totalSize = 0;
+		var $filesObject = $(".multibrowse input:file");
+		$filesObject.each( function(index) {
+			// Skips the last input if empty (in case a file has been replaced in another input)
+			if ($filesObject[index].files[0] == undefined && index == numberOfInputs - 1) {
+				return true;
+			}
+			totalSize += $filesObject[index].files[0].size;
+		});
+		return totalSize;
+	}
+
+
 
 	// MAIN FUNCTION
 	$.fn.addFileInput = function( options ){
@@ -59,20 +78,11 @@
 				addNewInput = false;
 			}
 
-			// Calculates the size of all files put together
-			var totalSize = 0;
-			$filesObject.each( function(index) {
-				// Skips the last input if empty (in case a file has been replaced in another input)
-				if ($filesObject[index].files[0] == undefined && index == numberOfInputs - 1) {
-					return true;
-				}
-				totalSize += $filesObject[index].files[0].size;
-			});
-
 			// Checks the file size, then the max file size
-			if ( totalSize > settings.maxTotalSize ){
+			if ( $multibrowse.totalSize() > settings.maxTotalSize ){
 				$multibrowse.writeMessage( "Total File Too Big you Idiot !!!" );
 				$multisubmit[0].disabled = true;
+				addNewInput = false;
 			} 
 
 			// Adds another input of type file if the max number of inputs has not been reached
