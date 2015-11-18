@@ -30,6 +30,20 @@
 	}
 
 
+	// A helper method that shows a preview of the file uploaded
+	$.fn.generatePreview = function( $input ) {
+		$preview = $("<img>");
+		$preview.addClass("multipreview");
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			$preview.attr('src', e.target.result);
+		}
+		reader.readAsDataURL($input[0].files[0]);
+		$input.after( $preview );
+	}
+
+
+
 	// Helper method that adds a message below the form header
 	$.fn.writeMessage = function( message ) {
 		var $message = $( "<p class=\"multiBrowseMessage\"></p>" );
@@ -106,7 +120,10 @@
 				$multibrowse.writeMessage(message);
 				$multisubmit[0].disabled = true;
 				addNewInput = false;
-			} 
+			}
+
+			// Generate the preview
+			$multibrowse.generatePreview( $(this) );
 
 			// Adds another input of type file if the max number of inputs has not been reached
 			// AND the last file input is not empty
