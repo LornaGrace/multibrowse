@@ -8,6 +8,8 @@
 	};
 
 	var $multibrowse = $(".multibrowse");
+	var $multisubmit = $(".multisubmit");
+	$multisubmit[0].disabled = false;
 	
 	// Helper method that adds another file input after the last one 
 	$.fn.createFileInput = function( attributes ) {
@@ -30,14 +32,13 @@
 		$multibrowse.prepend( $message );
 	}
 
-
 	// MAIN FUNCTION
 	$.fn.addFileInput = function( options ){
 
 		// Default options
 		var settings = $.extend({
 			maxNumberOfInputs: 3,
-			maxFileSize: 3000000,
+			maxFileSize: 7000000,
 			maxTotalSize: 7000000
 		}, options );
 
@@ -54,6 +55,7 @@
 			// Checks that the size of last file is less than maxFileSize
 			if (this.files[0].size > settings.maxFileSize) {
 				$multibrowse.writeMessage( "Last File Too Big you Idiot !!!" );
+				$multisubmit[0].disabled = true;
 				addNewInput = false;
 			}
 
@@ -70,6 +72,7 @@
 			// Checks the file size, then the max file size
 			if ( totalSize > settings.maxTotalSize ){
 				$multibrowse.writeMessage( "Total File Too Big you Idiot !!!" );
+				$multisubmit[0].disabled = true;
 			} 
 
 			// Adds another input of type file if the max number of inputs has not been reached
