@@ -121,6 +121,7 @@
 		if ($multireset.length) {
 			$multireset.click( function( event ) {
 				event.preventDefault();
+				$("input:file").next().remove();
 				$("input:file").not(":first").remove();
 				$('input:file').val('');
 				$multisubmit[0].disabled = false;
