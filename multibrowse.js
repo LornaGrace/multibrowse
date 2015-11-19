@@ -14,9 +14,9 @@
 	/* Global variables
 	********************************************************/
 	var $multibrowse = $(".multibrowse");
-	var $multisubmit = $(".multisubmit");
-	var $multireset  = $(".multireset");
-	$multisubmit[0].disabled = false; // Re-enables the "submit" button in case of browser refresh
+	var $mb_submit = $(".mb_submit");
+	var $mb_reset  = $(".mb_reset");
+	$mb_submit[0].disabled = false; // Re-enables the "submit" button in case of browser refresh
 	
 
 	/* Helper functions
@@ -24,7 +24,7 @@
 
 	// Helper method that adds another file input wrapped in a div
 	$.fn.createFileInput = function( attributes ) {
-		var $newWrapper = $("<div class='mb-wrapper'></div>")
+		var $newWrapper = $("<div class='mb_wrapper'></div>")
 		var $newFile = $("<input>");
 		// Copies the attributes adds a suffix to "id" and "name"
 		$.each(attributes, function() {
@@ -35,7 +35,7 @@
     		}
 		});
 		$newWrapper.append($newFile);
-		$(".multibrowse .mb-wrapper:last").after( $newWrapper );
+		$(".multibrowse .mb_wrapper:last").after( $newWrapper );
 		
 	}
 
@@ -102,7 +102,7 @@
 		// Default options
 		var settings = $.extend({
 			maxNumberOfInputs: 5,
-			maxFileSize: 7000000,
+			maxFileSize: 3000000,
 			maxTotalSize: 7000000,
 			previewWidth: 200,
 		}, options );
@@ -123,17 +123,17 @@
 				message    += $multibrowse.getReadableFileSize(this.files[0].size) + "<br>";
 				message    += "The maximum file size is " + $multibrowse.getReadableFileSize(settings.maxFileSize);
 				$multibrowse.writeMessage( message );
-				$multisubmit[0].disabled = true;
+				$mb_submit[0].disabled = true;
 				addNewInput = false;
 			} else if ( $multibrowse.totalSize() > settings.maxTotalSize ){ // Same thing with the total file size
 				var message = "The total file size is ";
 				message    += $multibrowse.getReadableFileSize($multibrowse.totalSize()) + "<br>";
 				message    += "The maximum file size is " + $multibrowse.getReadableFileSize(settings.maxTotalSize);
 				$multibrowse.writeMessage(message);
-				$multisubmit[0].disabled = true;
+				$mb_submit[0].disabled = true;
 				addNewInput = false;
 			} else { // Make sure the submit button is enabled and the error message disappears
-				$multisubmit[0].disabled = false;
+				$mb_submit[0].disabled = false;
 				if( $(".multiBrowseMessage").length) {
 					$(".multiBrowseMessage").remove();
 				}
@@ -150,15 +150,15 @@
 
 		});
 
-		// Adds an event handler on multireset that leaves only one empty input
+		// Adds an event handler on mb_reset that leaves only one empty input
 		// Re-enables the submit button and removes the error message
-		if ($multireset.length) {
-			$multireset.click( function( event ) {
+		if ($mb_reset.length) {
+			$mb_reset.click( function( event ) {
 				event.preventDefault();
 				$(".multipreview").remove();
 				$("input:file").not(":first").remove();
 				$('input:file').val('');
-				$multisubmit[0].disabled = false;
+				$mb_submit[0].disabled = false;
 				$(".multiBrowseMessage").remove();
 			});
 		}
