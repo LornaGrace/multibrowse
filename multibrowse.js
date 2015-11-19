@@ -1,20 +1,27 @@
 (function( $ ) {
 
 
-	// Enter your options here (see doc)
+	/* Enter your options here (see doc)
+	********************************************************/
 	var userOptions = {
 		// maxNumberOfInputs:
 		// maxFileSize:
 		// maxTotalSize:
 		// previewWidth;
+		// rightMargin;
 	};
 
 
+	/* Global variables
+	********************************************************/
 	var $multibrowse = $(".multibrowse");
 	var $multisubmit = $(".multisubmit");
 	var $multireset  = $(".multireset");
 	$multisubmit[0].disabled = false; // Re-enables the "submit" button in case of browser refresh
 	
+
+	/* Helper functions
+	********************************************************/
 
 	// Helper method that adds another file input after the last one 
 	$.fn.createFileInput = function( attributes ) {
@@ -31,18 +38,19 @@
 	}
 
 
-	// A helper method that inserts a preview of the file uploaded
-	$.fn.generatePreview = function( $input, width ) {
+	// Helper method that inserts a preview of the file uploaded
+	$.fn.generatePreview = function( $input, width, margin ) {
 		$preview = $("<img>");
-		$preview.addClass("multipreview").width(width);
+		$preview.addClass("multipreview").width(width).css("margin-right", margin);
 		var reader = new FileReader();
 		reader.onload = function(e) {
 			$preview.attr('src', e.target.result);
 		}
 		reader.readAsDataURL($input[0].files[0]);
 		$multipreview = $( ".multibrowse .multipreview" );
+		console.log( $multipreview );
 		if ( $multipreview.length ) {
-			$multipreview.after( $preview );
+			$multipreview.filter(":last").after( $preview );
 		} else {
 			$input.after( $preview ).after("<br>");
 		}
@@ -88,7 +96,8 @@
 
 
 
-	// MAIN FUNCTION
+	/* MAIN FUNCTIONS
+	********************************************************/
 	$.fn.addFileInput = function( options ){
 
 		// Default options
@@ -96,7 +105,8 @@
 			maxNumberOfInputs: 5,
 			maxFileSize: 7000000,
 			maxTotalSize: 7000000,
-			previewWidth: 300
+			previewWidth: 200,
+			rightMargin: 20
 		}, options );
 
 		// Attach an event handler on every input of type file inside an element of class "multibrowse"
@@ -105,6 +115,10 @@
 			var $filesObject = $(".multibrowse input:file");
 			var attributes = $filesObject.filter(":first").prop( "attributes" );
 			var numberOfInputs = $filesObject.length;
+
+			$filesObject.each( function (){
+				$(this).width( settings.previewWidth ).css("margin-right", settings.rightMargin);
+			});
 
 			// Stores the conditions for adding an empty input file
 			var addNewInput = ($filesObject.filter(":last").val()) && (numberOfInputs < settings.maxNumberOfInputs);
@@ -130,7 +144,7 @@
 			}
 
 			// Generate the preview
-			$multibrowse.generatePreview( $(this), settings.previewWidth );
+			$multibrowse.generatePreview( $(this), settings.previewWidth, settings.rightMargin );
 
 			// Adds another input of type file if the max number of inputs has not been reached
 			// AND the last file input is not empty
@@ -140,7 +154,7 @@
 
 		});
 
-		// Adds an event listener on multireset that leaves only one empty input
+		// Adds an event handler on multireset that leaves only one empty input
 		// Re-enables the submit button and removes the error message
 		if ($multireset.length) {
 			$multireset.click( function( event ) {
