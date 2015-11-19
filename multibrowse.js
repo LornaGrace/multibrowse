@@ -93,7 +93,7 @@
 
 		// Default options
 		var settings = $.extend({
-			maxNumberOfInputs: 3,
+			maxNumberOfInputs: 5,
 			maxFileSize: 7000000,
 			maxTotalSize: 7000000,
 			previewWidth: 300
@@ -145,7 +145,7 @@
 		if ($multireset.length) {
 			$multireset.click( function( event ) {
 				event.preventDefault();
-				$("input:file").next().remove();
+				$(".multipreview").remove();
 				$("input:file").not(":first").remove();
 				$('input:file').val('');
 				$multisubmit[0].disabled = false;
