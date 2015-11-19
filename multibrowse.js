@@ -23,7 +23,7 @@
 	/* Helper functions
 	********************************************************/
 
-	// Helper method that adds another file input after the last one 
+	// Helper method that adds another file input wrapped in a div
 	$.fn.createFileInput = function( attributes ) {
 		var $newWrapper = $("<div class='mb-wrapper'></div>")
 		var $newFile = $("<input>");
@@ -50,6 +50,9 @@
 			$preview.attr('src', e.target.result);
 		}
 		reader.readAsDataURL($input[0].files[0]);
+		if ($input.next().is("img")) {
+			$input.next().remove();
+		}
 		$input.parent().append($preview);
 	}
 
@@ -83,7 +86,7 @@
 		var $filesObject = $(".multibrowse input:file");
 		$filesObject.each( function(index) {
 			// Skips the last input if empty
-			if ($filesObject[index].files[0]) {
+			if ($filesObject[index].files[0] == undefined ) {
 				return true;
 			}
 			totalSize += $filesObject[index].files[0].size;
@@ -100,7 +103,7 @@
 		// Default options
 		var settings = $.extend({
 			maxNumberOfInputs: 5,
-			maxFileSize: 3000000,
+			maxFileSize: 7000000,
 			maxTotalSize: 7000000,
 			previewWidth: 200,
 			rightMargin: 20
@@ -120,6 +123,8 @@
 			// Stores the conditions for adding an empty input file
 			var addNewInput = ($filesObject.filter(":last").val()) && (numberOfInputs < settings.maxNumberOfInputs);
 			
+			console.log( this.files[0].size );
+
 			// Checks that the size of last file is less than maxFileSize
 			if (this.files[0].size > settings.maxFileSize) {
 				var message = "The file " + this.files[0].name + " has the size ";
