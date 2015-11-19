@@ -6,6 +6,7 @@
 		// maxNumberOfInputs:
 		// maxFileSize:
 		// maxTotalSize:
+		// previewWidth;
 	};
 
 
@@ -26,20 +27,25 @@
     			$newFile.attr(this.name, this.value);
     		}
 		});
-		$(".multibrowse input:file:last").after( $newFile ).after( "<br>" );
+		$(".multibrowse input:file:last").after( $newFile );
 	}
 
 
-	// A helper method that shows a preview of the file uploaded
-	$.fn.generatePreview = function( $input ) {
+	// A helper method that inserts a preview of the file uploaded
+	$.fn.generatePreview = function( $input, width ) {
 		$preview = $("<img>");
-		$preview.addClass("multipreview");
+		$preview.addClass("multipreview").width(width);
 		var reader = new FileReader();
 		reader.onload = function(e) {
 			$preview.attr('src', e.target.result);
 		}
 		reader.readAsDataURL($input[0].files[0]);
-		$input.after( $preview );
+		$multipreview = $( ".multibrowse .multipreview" );
+		if ( $multipreview.length ) {
+			$multipreview.after( $preview );
+		} else {
+			$input.after( $preview ).after("<br>");
+		}
 	}
 
 
@@ -89,7 +95,8 @@
 		var settings = $.extend({
 			maxNumberOfInputs: 3,
 			maxFileSize: 7000000,
-			maxTotalSize: 7000000
+			maxTotalSize: 7000000,
+			previewWidth: 300
 		}, options );
 
 		// Attach an event handler on every input of type file inside an element of class "multibrowse"
@@ -123,7 +130,7 @@
 			}
 
 			// Generate the preview
-			$multibrowse.generatePreview( $(this) );
+			$multibrowse.generatePreview( $(this), settings.previewWidth );
 
 			// Adds another input of type file if the max number of inputs has not been reached
 			// AND the last file input is not empty
