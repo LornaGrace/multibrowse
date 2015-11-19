@@ -85,8 +85,8 @@
 		var totalSize = 0;
 		var $filesObject = $(".multibrowse input:file");
 		$filesObject.each( function(index) {
-			// Skips the last input if empty (in case a file has been replaced in another input)
-			if ($filesObject[index].files[0] == undefined && index == numberOfInputs - 1) {
+			// Skips the last input if empty
+			if ($filesObject[index].files[0]) {
 				return true;
 			}
 			totalSize += $filesObject[index].files[0].size;
@@ -105,7 +105,7 @@
 			maxNumberOfInputs: 5,
 			maxFileSize: 7000000,
 			maxTotalSize: 7000000,
-			previewWidth: 200,
+			previewWidth: 400,
 			rightMargin: 20
 		}, options );
 
