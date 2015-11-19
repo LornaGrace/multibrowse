@@ -25,6 +25,7 @@
 
 	// Helper method that adds another file input after the last one 
 	$.fn.createFileInput = function( attributes ) {
+		var $newWrapper = $("<div class='mb-wrapper'></div>")
 		var $newFile = $("<input>");
 		// Copies the attributes adds a suffix to "id" and "name"
 		$.each(attributes, function() {
@@ -34,7 +35,9 @@
     			$newFile.attr(this.name, this.value);
     		}
 		});
-		$(".multibrowse input:file:last").after( $newFile );
+		$newWrapper.append($newFile);
+		$(".multibrowse .mb-wrapper:last").after( $newWrapper );
+		
 	}
 
 
@@ -47,13 +50,7 @@
 			$preview.attr('src', e.target.result);
 		}
 		reader.readAsDataURL($input[0].files[0]);
-		$multipreview = $( ".multibrowse .multipreview" );
-		console.log( $multipreview );
-		if ( $multipreview.length ) {
-			$multipreview.filter(":last").after( $preview );
-		} else {
-			$input.after( $preview ).after("<br>");
-		}
+		$input.parent().append($preview);
 	}
 
 
@@ -103,9 +100,9 @@
 		// Default options
 		var settings = $.extend({
 			maxNumberOfInputs: 5,
-			maxFileSize: 7000000,
+			maxFileSize: 3000000,
 			maxTotalSize: 7000000,
-			previewWidth: 400,
+			previewWidth: 200,
 			rightMargin: 20
 		}, options );
 
@@ -143,7 +140,7 @@
 				addNewInput = false;
 			}
 
-			// Generate the preview
+			// Attach a preview to the file input
 			$multibrowse.generatePreview( $(this), settings.previewWidth, settings.rightMargin );
 
 			// Adds another input of type file if the max number of inputs has not been reached
