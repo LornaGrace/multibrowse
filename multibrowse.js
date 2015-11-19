@@ -8,7 +8,6 @@
 		// maxFileSize:
 		// maxTotalSize:
 		// previewWidth;
-		// rightMargin;
 	};
 
 
@@ -42,9 +41,9 @@
 
 
 	// Helper method that inserts a preview of the file uploaded
-	$.fn.generatePreview = function( $input, width, margin ) {
+	$.fn.generatePreview = function( $input, width ) {
 		$preview = $("<img>");
-		$preview.addClass("multipreview").width(width).css("margin-right", margin);
+		$preview.addClass("multipreview").width(width);
 		var reader = new FileReader();
 		reader.onload = function(e) {
 			$preview.attr('src', e.target.result);
@@ -106,7 +105,6 @@
 			maxFileSize: 7000000,
 			maxTotalSize: 7000000,
 			previewWidth: 200,
-			rightMargin: 20
 		}, options );
 
 		// Attach an event handler on every input of type file inside an element of class "multibrowse"
@@ -116,14 +114,8 @@
 			var attributes = $filesObject.filter(":first").prop( "attributes" );
 			var numberOfInputs = $filesObject.length;
 
-			$filesObject.each( function (){
-				$(this).width( settings.previewWidth ).css("margin-right", settings.rightMargin);
-			});
-
-			// Stores the conditions for adding an empty input file
+			// Conditions for adding an empty input file
 			var addNewInput = ($filesObject.filter(":last").val()) && (numberOfInputs < settings.maxNumberOfInputs);
-			
-			console.log( this.files[0].size );
 
 			// Checks that the size of last file is less than maxFileSize
 			if (this.files[0].size > settings.maxFileSize) {
@@ -133,20 +125,22 @@
 				$multibrowse.writeMessage( message );
 				$multisubmit[0].disabled = true;
 				addNewInput = false;
-			}
-
-			// Checks the file size, then the max file size
-			if ( $multibrowse.totalSize() > settings.maxTotalSize ){
+			} else if ( $multibrowse.totalSize() > settings.maxTotalSize ){ // Same thing with the total file size
 				var message = "The total file size is ";
 				message    += $multibrowse.getReadableFileSize($multibrowse.totalSize()) + "<br>";
 				message    += "The maximum file size is " + $multibrowse.getReadableFileSize(settings.maxTotalSize);
 				$multibrowse.writeMessage(message);
 				$multisubmit[0].disabled = true;
 				addNewInput = false;
+			} else { // Make sure the submit button is enabled and the error message disappears
+				$multisubmit[0].disabled = false;
+				if( $(".multiBrowseMessage").length) {
+					$(".multiBrowseMessage").remove();
+				}
 			}
 
 			// Attach a preview to the file input
-			$multibrowse.generatePreview( $(this), settings.previewWidth, settings.rightMargin );
+			$multibrowse.generatePreview( $(this), settings.previewWidth );
 
 			// Adds another input of type file if the max number of inputs has not been reached
 			// AND the last file input is not empty
