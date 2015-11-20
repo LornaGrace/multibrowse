@@ -13,12 +13,12 @@
 	********************************************************/
 	var userOptions = {
 		maxNumberOfInputs: $multibrowse.attr("mb-inputs-max"),
-		maxFileSize: $("input[name='MAX_FILE_SIZE']").attr("value")
-		// maxTotalSize:
-		// previewWidth:
+		maxFileSize: $("input[name='MAX_FILE_SIZE']").attr("value"),
+		maxTotalSize: $multibrowse.attr("mb-total-size"),
+		previewWidth: $multibrowse.attr("mb-preview-width")
 	};
 
-	console.log( userOptions.maxFileSize );
+	console.log( userOptions.previewWidth );
 	
 
 	/* Helper functions
@@ -103,9 +103,9 @@
 
 		// Default options
 		var settings = $.extend({
-			maxNumberOfInputs: 3,
-			maxFileSize: 3000000,
-			maxTotalSize: 7000000,
+			maxNumberOfInputs: 5,
+			maxFileSize: 1000000,
+			maxTotalSize: 5000000,
 			previewWidth: 200,
 		}, options );
 
