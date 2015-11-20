@@ -17,8 +17,6 @@
 		maxTotalSize: $multibrowse.attr("mb-total-size"),
 		previewWidth: $multibrowse.attr("mb-preview-width")
 	};
-
-	console.log( userOptions.previewWidth );
 	
 
 	/* Helper functions
@@ -61,7 +59,7 @@
 
 	// Helper method that adds a message below the form header
 	$.fn.writeMessage = function( message ) {
-		var $message = $( "<p class=\"multiBrowseMessage\"></p>" );
+		var $message = $( "<p class=\"mb-essage\"></p>" );
 		$message.html( message );
 		$multibrowse.prepend( $message );
 	}
@@ -137,8 +135,8 @@
 				addNewInput = false;
 			} else { // Make sure the submit button is enabled and the error message disappears
 				$mb_submit[0].disabled = false;
-				if( $(".multiBrowseMessage").length) {
-					$(".multiBrowseMessage").remove();
+				if( $(".mb-message").length) {
+					$(".mb-message").remove();
 				}
 			}
 
@@ -162,7 +160,7 @@
 				$("input:file").not(":first").remove();
 				$('input:file').val('');
 				$mb_submit[0].disabled = false;
-				$(".multiBrowseMessage").remove();
+				$(".mb-message").remove();
 			});
 		}
 		
