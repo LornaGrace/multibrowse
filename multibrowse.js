@@ -12,14 +12,13 @@
 	/* Enter your options here (see doc)
 	********************************************************/
 	var userOptions = {
-		maxNumberOfInputs: $multibrowse.attr("mb-inputs-max")
-		// maxFileSize:
+		maxNumberOfInputs: $multibrowse.attr("mb-inputs-max"),
+		maxFileSize: $("input[name='MAX_FILE_SIZE']").attr("value")
 		// maxTotalSize:
 		// previewWidth:
 	};
 
-	console.log($("[mb-inputs-max]"));
-	console.log(userOptions.maxNumberOfInputs);
+	console.log( userOptions.maxFileSize );
 	
 
 	/* Helper functions
@@ -109,8 +108,6 @@
 			maxTotalSize: 7000000,
 			previewWidth: 200,
 		}, options );
-
-		console.log( settings.maxNumberOfInputs );
 
 
 		// Attach an event handler on every input of type file inside an element of class "multibrowse"
