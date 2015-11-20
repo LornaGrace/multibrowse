@@ -1,22 +1,25 @@
 (function( $ ) {
 
 
-	/* Enter your options here (see doc)
-	********************************************************/
-	var userOptions = {
-		// maxNumberOfInputs:
-		// maxFileSize:
-		// maxTotalSize:
-		// previewWidth;
-	};
-
-
 	/* Global variables
 	********************************************************/
 	var $multibrowse = $(".multibrowse");
 	var $mb_submit = $(".mb_submit");
 	var $mb_reset  = $(".mb_reset");
 	$mb_submit[0].disabled = false; // Re-enables the "submit" button in case of browser refresh
+
+
+	/* Enter your options here (see doc)
+	********************************************************/
+	var userOptions = {
+		maxNumberOfInputs: $multibrowse.attr("mb-inputs-max")
+		// maxFileSize:
+		// maxTotalSize:
+		// previewWidth:
+	};
+
+	console.log($("[mb-inputs-max]"));
+	console.log(userOptions.maxNumberOfInputs);
 	
 
 	/* Helper functions
@@ -101,11 +104,14 @@
 
 		// Default options
 		var settings = $.extend({
-			maxNumberOfInputs: 5,
+			maxNumberOfInputs: 3,
 			maxFileSize: 3000000,
 			maxTotalSize: 7000000,
 			previewWidth: 200,
 		}, options );
+
+		console.log( settings.maxNumberOfInputs );
+
 
 		// Attach an event handler on every input of type file inside an element of class "multibrowse"
 		$multibrowse.delegate("input:file", 'change', function() {
