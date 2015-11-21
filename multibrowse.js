@@ -28,7 +28,7 @@
 			maxNumberOfInputs: 5,
 			maxFileSize: 1000000,
 			maxTotalSize: 5000000,
-			previewWidth: 200,
+			previewWidth: 200
 		}, options );
 
 
