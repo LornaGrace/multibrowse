@@ -39,19 +39,19 @@ It is possible to set a button that will reset only the input files without touc
 Variables can be customised directly in the html, or inside the plugin if you prefer.
 In the plugin, you can do it directly by replacing the expression in the “userOptions” object by the value that you want.
 
-- maxNumberOfInputs : The maximum number of inputs
+###### maxNumberOfInputs : The maximum number of inputs
 - Default : 5
 - To set-up : Add an attribute “mb-inputs-max” with the desired value to the form.
 
-- maxFileSize : Self explanatory
+###### maxFileSize : Self explanatory
 - Default : 1MB
 - Override with  <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
 
-- totalFileSize : self explanatory
+###### totalFileSize : self explanatory
 - Default : 5MB
 - Override with : Add an attribute “mb-total-size” with the desired value to the form.
 
-- previewWidth : The width of the preview in pixels.
+###### previewWidth : The width of the preview in pixels.
 - Default : 200px
 - override with : Add an attribute “mb-preview-width” with the desired value to the form.
 
