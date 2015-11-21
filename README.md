@@ -28,7 +28,7 @@ It is possible to set a button that will reset only the input files without touc
 ### Steps :
 
 1. Add jquery to your web page
-2. Link to the script
+2. Link to the script multibrowse.min.js (note : the index.html file is here only for testing and is not required)
 3. Add the class “multibrowse” to your form
 4. Wrap the file input into a div of class “mb_wrapper”
 5. Add the class of “mb_submit” to your submit buton
@@ -39,21 +39,21 @@ It is possible to set a button that will reset only the input files without touc
 Variables can be customised directly in the html, or inside the plugin if you prefer.
 In the plugin, you can do it directly by replacing the expression in the “userOptions” object by the value that you want.
 
-maxNumberOfInputs : The maximum number of inputs
-Default : 5
-To set-up : Add an attribute “mb-inputs-max” with the desired value to the form.
+- maxNumberOfInputs : The maximum number of inputs
+- Default : 5
+- To set-up : Add an attribute “mb-inputs-max” with the desired value to the form.
 
-maxFileSize : Self explanatory
-Default : 1MB
-Override with  <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
+- maxFileSize : Self explanatory
+- Default : 1MB
+- Override with  <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
 
-totalFileSize : self explanatory
-Default : 5MB
-override with : Add an attribute “mb-total-size” with the desired value to the form.
+- totalFileSize : self explanatory
+- Default : 5MB
+- Override with : Add an attribute “mb-total-size” with the desired value to the form.
 
-previewWidth : The width of the preview in pixels.
-Default : 200px
-override with : Add an attribute “mb-preview-width” with the desired value to the form.
+- previewWidth : The width of the preview in pixels.
+- Default : 200px
+- override with : Add an attribute “mb-preview-width” with the desired value to the form.
 
 ## Example of customised form :
 
@@ -80,5 +80,5 @@ Every time you add a file, this is what is created :
 
 ## In case of an error (file too large) :
 
-The message generated just under the <form> tag is of class “mb-message”, in case you want to style it.
+The message generated just under the `<form>` tag is of class “mb-message”, in case you want to style it.
 Also, the submit button is dimmed until the issue has been solved by the user.
