@@ -9,7 +9,7 @@
 	$mb_submit[0].disabled = false; // Re-enables the "submit" button in case of browser refresh
 
 
-	/* Enter your options here (see doc)
+	/* Options
 	********************************************************/
 	var userOptions = {
 		maxNumberOfInputs: $multibrowse.attr("mb-inputs-max"),
@@ -87,6 +87,8 @@
 				$(".mb-message").remove();
 			});
 		}
+
+		return this;
 		
 	}
 
