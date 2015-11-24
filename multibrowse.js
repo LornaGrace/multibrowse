@@ -33,7 +33,7 @@
 
 
 		// Attach an event handler on every input of type file inside an element of class "multibrowse"
-		$multibrowse.on("input:file", 'change', function() {
+		$multibrowse.on('change', "input:file", function() {
 			
 			var $filesObject = $(".multibrowse input:file");
 			var attributes = $filesObject.filter(":first").prop( "attributes" );
