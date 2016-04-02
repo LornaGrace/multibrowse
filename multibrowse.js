@@ -47,16 +47,12 @@
 				var message = "The file " + this.files[0].name + " has the size ";
 				message    += $multibrowse.addFileInput.getReadableFileSize(this.files[0].size) + "<br>";
 				message    += "The maximum file size is " + $multibrowse.addFileInput.getReadableFileSize(settings.maxFileSize);
-				$multibrowse.addFileInput.writeMessage( message );
-				$mb_submit[0].disabled = true;
-				addNewInput = false;
+				$multibrowse.addFileInput.fileIsTooBig(message);
 			} else if ( $multibrowse.addFileInput.totalSize() > settings.maxTotalSize ){ // Same thing with the total file size
 				var message = "The total file size is ";
 				message    += $multibrowse.addFileInput.getReadableFileSize($multibrowse.addFileInput.totalSize()) + "<br>";
 				message    += "The maximum file size is " + $multibrowse.addFileInput.getReadableFileSize(settings.maxTotalSize);
-				$multibrowse.addFileInput.writeMessage(message);
-				$mb_submit[0].disabled = true;
-				addNewInput = false;
+				$multibrowse.addFileInput.fileIsTooBig(message);
 			} else { // Make sure the submit button is enabled and the error message disappears
 				$mb_submit[0].disabled = false;
 				if( $(".mb-message").length) {
@@ -95,6 +91,13 @@
 
 	/* Helper functions
 	********************************************************/
+
+	// Helper method that treats errors when the file size is too big :
+	$.fn.addFileInput.fileIsTooBig = function( message ) {
+		$multibrowse.addFileInput.writeMessage( message );
+		$mb_submit[0].disabled = true;
+		addNewInput = false;
+	}
 
 	// Helper method that adds another file input wrapped in a div
 	$.fn.addFileInput.createFileInput = function( attributes ) {
