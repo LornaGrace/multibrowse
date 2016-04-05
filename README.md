@@ -32,7 +32,7 @@ It is possible to set a button that will reset only the input files without touc
 3. Add the class “multibrowse” to your form
 4. Wrap the file input into a div of class “mb_wrapper”
 5. Add the class of “mb_submit” to your submit buton
-6. Optional : Add a reset button with the class “mb_wrapper”
+6. Optional : Add a reset button with the class “mb_reset”
 
 ## Customisation :
 
