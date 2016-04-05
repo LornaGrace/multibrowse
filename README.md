@@ -41,7 +41,7 @@ In the plugin, you can do it directly by replacing the expression in the “user
 
 ###### maxNumberOfInputs : The maximum number of inputs
 - Default : 5
-- To set-up : Add an attribute “mb-inputs-max” with the desired value to the form.
+- To set-up : Add an attribute “data-mb-inputs-max” with the desired value to the form.
 
 ###### maxFileSize : Self explanatory
 - Default : 1MB
@@ -49,16 +49,16 @@ In the plugin, you can do it directly by replacing the expression in the “user
 
 ###### totalFileSize : self explanatory
 - Default : 5MB
-- Override with : Add an attribute “mb-total-size” with the desired value to the form.
+- Override with : Add an attribute “data-mb-total-size” with the desired value to the form.
 
 ###### previewWidth : The width of the preview in pixels.
 - Default : 200px
-- override with : Add an attribute “mb-preview-width” with the desired value to the form.
+- override with : Add an attribute “data-mb-preview-width” with the desired value to the form.
 
 ## Example of customised form :
 
 ```html
-<form id="sandbox-form" class="multibrowse" action="insertscript.php" method="post" mb-inputs-max=“20” mb-total-size=“10000000 ” mb-preview-width="400">
+<form id="sandbox-form" class="multibrowse" action="insertscript.php" method="post" mb-inputs-max=“20” data-mb-total-size=“10000000 ” data-mb-preview-width="400">
 ```
 
 ## What is actually generated :
