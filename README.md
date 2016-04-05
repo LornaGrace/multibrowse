@@ -45,7 +45,7 @@ In the plugin, you can do it directly by replacing the expression in the “user
 
 ###### maxFileSize : Self explanatory
 - Default : 1MB
-- Override with  <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
+- Override with  `<input type="hidden" name="MAX_FILE_SIZE" value="500000" />`
 
 ###### totalFileSize : self explanatory
 - Default : 5MB
