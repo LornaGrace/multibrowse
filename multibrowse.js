@@ -13,10 +13,10 @@
 	/* Options
 	********************************************************/
 		userOptions = {
-		maxNumberOfInputs: $multibrowse.attr("mb-inputs-max"),
+		maxNumberOfInputs: $multibrowse.data("mb-inputs-max"),
 		maxFileSize: $("input[name='MAX_FILE_SIZE']").attr("value"),
-		maxTotalSize: $multibrowse.attr("mb-total-size"),
-		previewWidth: $multibrowse.attr("mb-preview-width")
+		maxTotalSize: $multibrowse.data("mb-total-size"),
+		previewWidth: $multibrowse.data("mb-preview-width")
 	};
 
 	// Re-enables the "submit" button in case of browser refresh
@@ -30,8 +30,8 @@
 		// Default options
 		var settings = $.extend({
 			maxNumberOfInputs: 3,
-			maxFileSize: 2000000,
-			maxTotalSize: 2000000,
+			maxFileSize: 1000000,
+			maxTotalSize: 5000000,
 			previewWidth: 200
 		}, options );
 
